@@ -12,7 +12,11 @@ namespace Gazan.WEB.Data
 {
     public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
-        DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<CriticalValue> CriticalValues { get; set; }
+        public DbSet<Dimension> Dimensions { get; set; }
+        public DbSet<HarmfulSubstance> HarmfulSubstances { get; set; }
+
         public ApplicationDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
