@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
+  lat = 51.678418;
+  lng = 7.809007;
 }

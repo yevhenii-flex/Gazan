@@ -21,13 +21,15 @@ namespace Gazan.WEB.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IMapper _mapper;
 
-        public UsersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IMapper mapper)
+        public UsersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager, IMapper mapper)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             _mapper = mapper;
         }
 
@@ -56,13 +58,18 @@ namespace Gazan.WEB.Controllers
             var user = new ApplicationUser
             {
                 Email = model.Email,
-                UserName = model.Email
+                UserName = model.Email,
+                EmailConfirmed = true
             };
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
             {
-                await _signInManager.SignInAsync(user, false);
+                //await _signInManager.SignInAsync(user, false);
+                bool isRoleExists = await _roleManager.RoleExistsAsync(model.Role);
+                if (!isRoleExists) await _roleManager.CreateAsync(new IdentityRole(model.Role));
+
+                await _userManager.AddToRoleAsync(user, model.Role);
 
                 return Ok(_mapper.Map<ApplicationUserViewModel>(user));
             }

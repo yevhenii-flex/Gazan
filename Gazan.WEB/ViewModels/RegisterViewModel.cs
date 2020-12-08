@@ -14,5 +14,7 @@ namespace Gazan.WEB.ViewModels
         public string Password { get; set; }
         [Required]
         public string PasswordConfirm { get; set; }
+        [Required]
+        public string Role { get; set; }
     }
 }
