@@ -1,0 +1,79 @@
+<h1>Users List</h1>
+<input type="button" value="Add" class="btn btn-default" (click)="addUser()" />
+<input type="button" value="Reload" class="btn btn-default" (click)="loadUsers()" />
+<table *ngIf="tableMode; else create" class="table table-striped">
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>Email</td>
+      <td>PhoneNumber</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let u of users">
+      <ng-template [ngIf]="user?.id != u.id" [ngIfElse]="edit">
+        <td>{{u?.id}}</td>
+        <td>{{u?.email}}</td>
+        <td>{{u?.phoneNumber}}</td>
+        <td>
+          <button class="btn btn-sm btn-primary m-2" (click)="editUser(u)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteUser(u)">Delete</button>
+        </td>
+      </ng-template>
+    </tr>
+  </tbody>
+</table>
+
+<!--шаблон для редактирования-->
+<ng-template #edit>
+  <td>
+    <input type="text" [(ngModel)]="user.id" readonly class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="user.email" class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="user.phoneNumber" class="form-control" />
+  </td>
+  <td>
+    <input type="button" value="Save" (click)="save()" class="btn btn-sm btn-success m-2 " />
+    <input type="button" value="Cancel" (click)="cancel()" class="btn btn-sm btn-warning" />
+  </td>
+</ng-template>
+
+<!--шаблон для добавления-->
+<ng-template #create>
+  <!--<div class="form-group">
+    <label>Id</label>
+    <input type="text" [(ngModel)]="user.id" class="form-control" />
+  </div>-->
+  <div class="form-group">
+    <label>Email</label>
+    <input type="text" [(ngModel)]="user.email" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>PhoneNumber</label>
+    <input type="text" [(ngModel)]="user.phoneNumber" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input type="text" [(ngModel)]="user.password" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Confirm Password</label>
+    <input type="text" [(ngModel)]="user.passwordConfirm" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Role</label>
+    <select [(ngModel)]="user.role" class="form-control">
+      <option value="user">user</option>
+      <option value="admin">admin</option>
+      <option value="expert">expert</option>
+    </select>
+  </div>
+  <div>
+    <input type="button" value="Save" (click)="save()" class="btn btn-success m-2" />
+    <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" />
+  </div>
+</ng-template>

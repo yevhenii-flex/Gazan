@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   lat = 51.678418;
-  lng = 7.809007;
+  lng = 17.809007;
 }
