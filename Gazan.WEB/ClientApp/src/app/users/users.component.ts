@@ -21,7 +21,7 @@ export class UsersComponent implements OnInit {
   }
   // получаем данные через сервис
   loadUsers() {
-    this.userService.getgetUsers()
+    this.userService.getUsers()
       .subscribe((data: User[]) => this.users = data);
   }
 

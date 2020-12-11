@@ -14,6 +14,7 @@ import { ApiAuthorizationModule } from '../api-authorization/api-authorization.m
 import { AuthorizeGuard } from '../api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from '../api-authorization/authorize.interceptor';
 import { UsersComponent } from './users/users.component';
+import { HarmfulSubstancesComponent } from './harmful-substances/harmful-substances.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { UsersComponent } from './users/users.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    UsersComponent
+    UsersComponent,
+    HarmfulSubstancesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -34,7 +36,8 @@ import { UsersComponent } from './users/users.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
-      { path: 'users', component: UsersComponent, canActivate: [AuthorizeGuard]}
+      { path: 'users', component: UsersComponent, canActivate: [AuthorizeGuard] },
+      { path: 'harmfulSubstances', component: HarmfulSubstancesComponent, canActivate: [AuthorizeGuard] }
     ]),
     AgmCoreModule.forRoot({
       apiKey: ''

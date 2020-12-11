@@ -1,0 +1,55 @@
+<h1>Harmful Substances</h1>
+<input type="button" value="Add" class="btn btn-default" (click)="addHarmfulSubstance()" />
+<input type="button" value="Reload" class="btn btn-default" (click)="loadHarmfulSubstances()" />
+<table *ngIf="tableMode; else create" class="table table-striped">
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>Name</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let u of harmfulSubstances">
+      <ng-template [ngIf]="harmfulSubstance?.id != u.id" [ngIfElse]="edit">
+        <td>{{u?.id}}</td>
+        <td>{{u?.name}}</td>
+        <td>
+          <button class="btn btn-sm btn-primary m-2" (click)="editHarmfulSubstance(u)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteHarmfulSubstance(u)">Delete</button>
+        </td>
+      </ng-template>
+    </tr>
+  </tbody>
+</table>
+
+<!--шаблон для редактирования-->
+<ng-template #edit>
+  <td>
+    <input type="text" [(ngModel)]="harmfulSubstance.id" readonly class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="harmfulSubstance.name" class="form-control" />
+  </td>
+  <td>
+    <input type="button" value="Save" (click)="save()" class="btn btn-sm btn-success m-2 " />
+    <input type="button" value="Cancel" (click)="cancel()" class="btn btn-sm btn-warning" />
+  </td>
+</ng-template>
+
+<!--шаблон для добавления-->
+<ng-template #create>
+  <!--<div class="form-group">
+    <label>Id</label>
+    <input type="text" [(ngModel)]="user.id" class="form-control" />
+  </div>-->
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" [(ngModel)]="harmfulSubstance.name" class="form-control" />
+  </div>
+  
+  <div>
+    <input type="button" value="Save" (click)="save()" class="btn btn-success m-2" />
+    <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" />
+  </div>
+</ng-template>
