@@ -85,9 +85,6 @@ namespace Gazan.WEB
                 
             });
 
-
-
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())

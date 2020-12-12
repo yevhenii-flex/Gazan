@@ -31,7 +31,7 @@ namespace Gazan.WEB.Controllers
         [HttpGet("IsCritical")]
         public IActionResult IsCritical(int substanceId, int substanceValue)
         {
-            double averageCriticalValue = _context.CriticalValues.Where(c => c.HarmfulSubstanceId == substanceId).Select(c => c.Value).Average();
+            double averageCriticalValue = _context.CriticalValues.Where(c => c.HarmfulSubstanceId == substanceId && c.IsApproved).Select(c => c.Value).Average();
 
             if (averageCriticalValue > substanceValue) return Ok(true);
             else return Ok(false);
