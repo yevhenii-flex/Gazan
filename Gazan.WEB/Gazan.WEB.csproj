@@ -37,8 +37,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\models\criticalValue.ts" />
     <None Remove="ClientApp\src\app\models\harmfulSubstance.ts" />
     <None Remove="ClientApp\src\app\models\user.ts" />
+    <None Remove="ClientApp\src\app\services\criticalValue.service.ts" />
     <None Remove="ClientApp\src\app\services\harmfulSubstance.service.ts" />
     <None Remove="ClientApp\src\app\services\user.service.ts" />
   </ItemGroup>
@@ -48,7 +50,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="wwwroot\conf.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\conf.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ClientApp\src\app\models\harmfulSubstance - Copy.js">
+      <DependentUpon>harmfulSubstance.js</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Update="ClientApp\src\app\models\criticalValue.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Update="ClientApp\src\app\models\harmfulSubstance.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Update="ClientApp\src\app\services\criticalValue.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
   </ItemGroup>

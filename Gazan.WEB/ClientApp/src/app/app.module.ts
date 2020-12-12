@@ -15,6 +15,8 @@ import { AuthorizeGuard } from '../api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from '../api-authorization/authorize.interceptor';
 import { UsersComponent } from './users/users.component';
 import { HarmfulSubstancesComponent } from './harmful-substances/harmful-substances.component';
+import { CriticalValuesComponent } from './critical-values/critical-values.component';
+import { DataComponent } from './data/data.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { HarmfulSubstancesComponent } from './harmful-substances/harmful-substan
     CounterComponent,
     FetchDataComponent,
     UsersComponent,
-    HarmfulSubstancesComponent
+    HarmfulSubstancesComponent,
+    CriticalValuesComponent,
+    DataComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,7 +41,9 @@ import { HarmfulSubstancesComponent } from './harmful-substances/harmful-substan
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
       { path: 'users', component: UsersComponent, canActivate: [AuthorizeGuard] },
-      { path: 'harmfulSubstances', component: HarmfulSubstancesComponent, canActivate: [AuthorizeGuard] }
+      { path: 'harmfulSubstances', component: HarmfulSubstancesComponent, canActivate: [AuthorizeGuard] },
+      { path: 'criticalValues', component: CriticalValuesComponent, canActivate: [AuthorizeGuard] },
+      { path: 'data', component: DataComponent, canActivate: [AuthorizeGuard] }
     ]),
     AgmCoreModule.forRoot({
       apiKey: ''

@@ -1,4 +1,6 @@
-<h1 class="text-center">Gazan WEB air quality map</h1>
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+<h1 class="text-center"> 😎 Gazan air quality map 😎 </h1>
+<agm-map [latitude]="startLat" [longitude]="startLng" [zoom]="11">
+
+  <!--<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
+  <agm-marker *ngFor="let marker of markers; let i = index" [latitude]="marker.lat" [longitude]="marker.lng">i</agm-marker>
 </agm-map>
