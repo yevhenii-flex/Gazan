@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Gazan.Backend.Models;
 using Gazan.WEB.Models;
 using Gazan.WEB.ViewModels;
 using System;
@@ -12,19 +13,12 @@ namespace Gazan.WEB.Infrastructure
     {
         public MappingProfile()
         {
-            //CreateMap<BookingRecordViewModel, BookingRecord>();
-            //CreateMap<BookingRecord, BookingRecordViewModel>();
-
-            //CreateMap<RoomViewModel, Room>();
-            //CreateMap<Room, RoomViewModel>();
-
-            //CreateMap<SettingsRecord, SettingsRecordViewModel>();
-            //CreateMap<SettingsRecord, SettingsRecordViewModel>();
 
             CreateMap<ApplicationUser, ApplicationUserViewModel>();
             CreateMap<ApplicationUserViewModel, ApplicationUser>();
 
-
+            CreateMap<CriticalValue, CriticalValueViewModel>().ForMember(m => m.HarmfulSubstanceName, opt => opt.MapFrom(src => src.HarmfulSubstance.Name));
+            CreateMap<CriticalValueViewModel, CriticalValue>();
         }
     }
 }

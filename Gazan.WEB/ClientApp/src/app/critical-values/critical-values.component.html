@@ -5,9 +5,6 @@
   <thead>
     <tr>
       <td>Id</td>
-      <td>
-        Name
-      </td>
       <td>Harmful Substance</td>
       <td>Value</td>
       <td>Aprove</td>
@@ -16,13 +13,13 @@
   </thead>
   <tbody>
     <tr *ngFor="let u of criticalValues">
-      <ng-template [ngIf]="harmfulSubstance?.id != u.id" [ngIfElse]="edit">
+      <ng-template [ngIf]="criticalValue?.id != u.id" [ngIfElse]="edit">
         <td>{{u?.id}}</td>
         <td>{{u?.harmfulSubstanceName}}</td>
         <td>{{u?.value}}</td>
         <td>{{u?.isApproved}}</td>
         <td>
-          <button class="btn btn-sm btn-primary m-2" (click)="edit(u)">Edit</button>
+          <button class="btn btn-sm btn-primary m-2" (click)="editValue(u)">Edit</button>
           <button class="btn btn-sm btn-danger" (click)="delete(u)">Delete</button>
         </td>
       </ng-template>

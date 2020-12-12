@@ -64,13 +64,7 @@ namespace Gazan.WEB.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
-            {
-                //await _signInManager.SignInAsync(user, false);
-                //bool isRoleExists = await _roleManager.RoleExistsAsync(model.Role);
-                //if (!isRoleExists) await _roleManager.CreateAsync(new IdentityRole(model.Role));
-
-                //await _userManager.AddToRoleAsync(user, model.Role);
-                
+            {            
                 return Ok(_mapper.Map<ApplicationUserViewModel>(user));
             }
             else if (result.Errors.Any())
@@ -99,7 +93,6 @@ namespace Gazan.WEB.Controllers
             }
             dbUser.Email = user.Email;
             dbUser.PhoneNumber = user.PhoneNumber;
-            //_context.Entry(dbUser).State = EntityState.Modified;
 
             try
             {

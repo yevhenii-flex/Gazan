@@ -35,7 +35,8 @@ export class CriticalValuesComponent implements OnInit {
     }
     this.cancel();
   }
-  editHarmfulSubstance(u: CriticalValue) {
+
+  editValue(u: CriticalValue) {
     this.criticalValue = u;
   }
   cancel() {

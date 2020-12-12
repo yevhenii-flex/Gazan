@@ -11,6 +11,8 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using AutoMapper;
+using Gazan.Backend.Models;
 
 namespace Gazan.WEB.Controllers
 {
@@ -19,10 +21,12 @@ namespace Gazan.WEB.Controllers
     public class CriticalValuesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public CriticalValuesController(ApplicationDbContext context)
+        public CriticalValuesController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         [HttpGet("IsCritical")]
         public IActionResult IsCritical(int substanceId, int substanceValue)
@@ -34,9 +38,9 @@ namespace Gazan.WEB.Controllers
         }
         // GET: api/CriticalValues
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CriticalValue>>> GetCriticalValues()
+        public async Task<IActionResult> GetCriticalValues()
         {
-            return await _context.CriticalValues.ToListAsync();
+            return Ok(_mapper.Map<List<CriticalValueViewModel>>(await _context.CriticalValues.Include(c => c.HarmfulSubstance).ToListAsync()));
         }
 
         // GET: api/CriticalValues/5
